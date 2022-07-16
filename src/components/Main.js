@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion'
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import styled, { keyframes } from 'styled-components'
@@ -5,10 +6,13 @@ import LogoComponent from '../subComponents/LogoComponent'
 import PowerButton from '../subComponents/PowerButton'
 import SocialIcons from '../subComponents/SocialIcons'
 import { YinYang } from './AllSvgs'
+import Intro from './Intro'
+import {Toaster, toast} from 'react-hot-toast'
+import { color } from '@mui/system'
 
 
 
-const MainContainer = styled.div`
+const MainContainer = styled(motion.div)`
 
 background: ${props => props.theme.body};
 width: 100vw;
@@ -136,11 +140,60 @@ z-index: 1;
 transition: height 0.5s ease, width 1s ease 0.5s;
 `
 
-const Main = () => {
+const down = {
+  open: {
+    initial:{opacity: 0 },
+    animate:{opacity: 1, y: 0},
+    exit:{opacity: 0, y: '-100vh'},
+    transition:{ease:"circOut",type:"tween",duration: 0.5},
+  }
+}
+
+const left  = {
+  open: {
+    initial:{opacity: 0 },
+    animate:{opacity: 1, x: 0},
+    exit:{opacity: 0, x: '-100vw'},
+    transition:{ease:"circOut",type:"tween",duration: 0.5},
+  }
+}
+
+const right  = {
+  open: {
+    initial:{opacity: 0 },
+    animate:{opacity: 1, x: 0},
+    exit:{opacity: 0, x: '100vw'},
+    transition:{ease:"circOut",type:"tween",duration: 0.5},
+  }
+}
+
+const variants = {
+  open: { opacity: 1, x: 0 },
+  closed: { opacity: 0, x: "-100%" },
+}
+
+const Main = (props) => {
   const [click, setClick] = useState(false)
   const handleClick = () => setClick(!click)
+
+  const [isOpen, setIsOpen] = useState(false)
+
   return (
-    <MainContainer>
+          // initial={{opacity: 0 }}
+          // animate={{opacity: 1, y: 0}}
+          // exit={{opacity: 0, y: '-100vh'}}
+          // transition={{ease:"circOut",type:"tween",duration: 0.5}}
+
+          // initial={{opacity: 0}}
+          // animate={{opacity: 1, x: 0}}
+          // exit={{opacity: 1, x: '100vw'}}
+          // transition={{ease:"circOut",type:"tween",duration: 1}}
+          <MainContainer
+          initial={{opacity: 0 }}
+          animate={{opacity: 1, y: 0}}
+          exit={{opacity: 1, y: '-100vh'}}
+          transition={{ease:"circOut",type:"tween",duration: 0.5}}
+          >
         <DarkDiv click={click} />
         <Container>
             <PowerButton />
@@ -153,46 +206,112 @@ const Main = () => {
 
             <Contact href='mailto:9kbabouziane@gmail.com' rel="noreferrer" target='_blank'>
               
-              <h2>
+              <motion.h2
+              initial={{
+                y:-200,
+                transition : {type: 'spring', duration: 1.5, delay:1}
+              }}
+              animate={{
+                y:0,
+                transition : {type: 'spring', duration: 1.5, delay:1}
+              }}
+              whileHover={{scale: 1.1}}
+              whileTap={{scale: 0.9}}
+
+              >
                 Say hi..
-              </h2>
+              </motion.h2>
 
             </Contact>
 
-            <Blog to='/blog'>
+            <Blog to =''>
               
-              <h2>
+              <motion.h2
+              onClick={() => toast("Coming Soon.." , {
+                duration: 3000,
+                position: 'top-center',
+                style: {background : "#FCF6F4",
+                        color: '#000'},
+              })}
+              initial={{
+                y:-200,
+                transition : {type: 'spring', duration: 1.5, delay:1}
+              }}
+              animate={{
+                y:0,
+                transition : {type: 'spring', duration: 1.5, delay:1}
+              }} 
+              whileHover={{scale: 1.1}}
+              whileTap={{scale: 0.9}}
+              >
                 Blog
-              </h2>
-
-            </Blog>
-
-            <Work to='/work' click={click}>
+              </motion.h2>
               
-              <h2>
+            </Blog>
+            <Toaster
+             
+             
+              />
+            <Work  to='/work'  click={click}>
+              
+              <motion.h2
+              initial={{
+                y:-200,
+                transition : {type: 'spring', duration: 1.5, delay:1}
+              }}
+              animate={{
+                y:0,
+                transition : {type: 'spring', duration: 1.5, delay:1}
+              }}
+              whileHover={{scale: 1.1}}
+              whileTap={{scale: 0.9}}
+              >
                 Work
-              </h2>
+              </motion.h2>
 
             </Work>
             <BottomBar>
-            <About  to='/about' click={click} >
+            <About to='/about' click={click} >
               
-              <h2>
+              <motion.h2
+              initial={{
+                y:200,
+                transition : {type: 'spring', duration: 1.5, delay:1}
+              }}
+              animate={{
+                y:0,
+                transition : {type: 'spring', duration: 1.5, delay:1}
+              }}
+              whileHover={{scale: 1.1}}
+              whileTap={{scale: 0.9}}
+              >
                 About.
-              </h2>
+              </motion.h2>
 
             </About>
             <Skills to='/skills' click={click}>
               
-              <h2>
+              <motion.h2
+              initial={{
+                y:200,
+                transition : {type: 'spring', duration: 1.5, delay:1}
+              }}
+              animate={{
+                y:0,
+                transition : {type: 'spring', duration: 1.5, delay:1}
+              }}
+              whileHover={{scale: 1.1}}
+              whileTap={{scale: 0.9}}
+              >
                 My Skills.
-              </h2>
+              </motion.h2>
 
             </Skills>
             </BottomBar>
 
 
         </Container>
+        {click ? <Intro click={click} /> : null} 
     </MainContainer>
   )
 }
