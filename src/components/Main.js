@@ -140,59 +140,66 @@ z-index: 1;
 transition: height 0.5s ease, width 1s ease 0.5s;
 `
 
-const down = {
-  open: {
-    initial:{opacity: 0 },
-    animate:{opacity: 1, y: 0},
-    exit:{opacity: 0, y: '-100vh'},
-    transition:{ease:"circOut",type:"tween",duration: 0.5},
-  }
-}
+// const down = {
+//   open: {
+//     initial:{opacity: 0 },
+//     animate:{opacity: 1, y: 0},
+//     exit:{opacity: 0, y: '-100vh'},
+//     transition:{ease:"circOut",type:"tween",duration: 0.5},
+//   }
+// }
 
-const left  = {
-  open: {
-    initial:{opacity: 0 },
-    animate:{opacity: 1, x: 0},
-    exit:{opacity: 0, x: '-100vw'},
-    transition:{ease:"circOut",type:"tween",duration: 0.5},
-  }
-}
+// const left  = {
+//   open: {
+//     initial:{opacity: 0 },
+//     animate:{opacity: 1, x: 0},
+//     exit:{opacity: 0, x: '-100vw'},
+//     transition:{ease:"circOut",type:"tween",duration: 0.5},
+//   }
+// }
 
-const right  = {
-  open: {
-    initial:{opacity: 0 },
-    animate:{opacity: 1, x: 0},
-    exit:{opacity: 0, x: '100vw'},
-    transition:{ease:"circOut",type:"tween",duration: 0.5},
-  }
-}
+// const right  = {
+//   open: {
+//     initial:{opacity: 0 },
+//     animate:{opacity: 1, x: 0},
+//     exit:{opacity: 0, x: '100vw'},
+//     transition:{ease:"circOut",type:"tween",duration: 0.5},
+//   }
+// }
 
-const variants = {
-  open: { opacity: 1, x: 0 },
-  closed: { opacity: 0, x: "-100%" },
-}
+// const variants = 
 
-const Main = (props) => {
+const Main = () => {
   const [click, setClick] = useState(false)
   const handleClick = () => setClick(!click)
+  
+  
+  const handleAnimations = (updatedVariants) => setVariants(updatedVariants) 
 
-  const [isOpen, setIsOpen] = useState(false)
+  const [variants, setVariants] = useState({
+        hidden: {opacity: 0},
+        visible: { opacity: 1, y: 0 },
+        exit: {opacity: 1, y: '-100vh'},
+        transition: {ease:"circOut",type:"tween",duration: 1},
+  })
+
+  // const [isOpen, setIsOpen] = useState(false)
 
   return (
           // initial={{opacity: 0 }}
           // animate={{opacity: 1, y: 0}}
           // exit={{opacity: 0, y: '-100vh'}}
           // transition={{ease:"circOut",type:"tween",duration: 0.5}}
-
           // initial={{opacity: 0}}
           // animate={{opacity: 1, x: 0}}
           // exit={{opacity: 1, x: '100vw'}}
           // transition={{ease:"circOut",type:"tween",duration: 1}}
           <MainContainer
-          initial={{opacity: 0 }}
-          animate={{opacity: 1, y: 0}}
-          exit={{opacity: 1, y: '-100vh'}}
-          transition={{ease:"circOut",type:"tween",duration: 0.5}}
+          initial='hidden'
+          animate='visible'
+          exit='exit'
+          transition='transition'
+          variants={variants}
           >
         <DarkDiv click={click} />
         <Container>
@@ -248,11 +255,16 @@ const Main = (props) => {
               </motion.h2>
               
             </Blog>
-            <Toaster
-             
-             
+            <Toaster 
               />
-            <Work  to='/work'  click={click}>
+            <Work  to='/work' 
+            onClick={() => handleAnimations({...variants, exit :{opacity : 0, x:'100vw'}, visible: { opacity: 1, x: 0 } })} 
+            click={click}  
+            // click={() => {
+            //   setVariants({...variants, exit :{opacity : 0, y:'100vh'}, visible: { opacity: 1, y: 0 }});
+            //   click();
+            // }}
+            >
               
               <motion.h2
               initial={{

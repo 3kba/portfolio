@@ -86,14 +86,22 @@ ul, p{
 
 `
 
+const variants = {
+  hidden: {opacity: 1, y: 0},
+  visible: { opacity: 1 },
+  exit: {opacity: 1, y: '100vh'},
+  transition: {ease:"circOut",type:"tween",duration: 1},
+}
+
 const MySkillsPage = () => {
   return (
     <ThemeProvider theme={LightTheme}>
       <Box 
-          initial={{opacity: 0}}
-          animate={{opacity: 1, y: 0}}
-          exit={{opacity: 1, y: '100vh'}}
-          transition={{ease:"circOut",type:"tween",duration: 1}}
+          initial='hidden'
+          animate='visible'
+          exit='exit'
+          transition='transition'
+          variants={variants}
           
           >
             <LogoComponent />
