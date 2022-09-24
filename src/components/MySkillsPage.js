@@ -108,17 +108,17 @@ const MySkillsPage = () => {
         </Main> */}
         <Main>
           <Title>
-            <Develope width={50} height={50} /> Frontend Developer
+            <Develope width={50} height={50} /> Full Stack Developer
           </Title>
           <Description>
-            I value business or brand for which i'm creating, thus i enjoy
+            I value the business or brand for which I'm creating, thus I enjoy
             bringing new ideas to life.
           </Description>
           <Description>
             <strong>Skills</strong>
             <p>
-              Html, Css, Js, React, Redux, Sass, Bootstrap, Tailwind, Firebase
-              etc.
+              Html, Css, Js, React, Node, Redux, Sass, Bootstrap, Tailwind,
+              Firebase ect..
             </p>
           </Description>
           <Description>

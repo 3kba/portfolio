@@ -9,6 +9,7 @@ import { YinYang } from "./AllSvgs";
 import Intro from "./Intro";
 import { Toaster, toast } from "react-hot-toast";
 import { color } from "@mui/system";
+import styledComponents from "styled-components";
 
 const MainContainer = styled(motion.div)`
   background: ${(props) => props.theme.body};
@@ -16,7 +17,7 @@ const MainContainer = styled(motion.div)`
   height: 100vh;
   overflow: hidden;
   position: relative;
-
+  a,
   h2,
   h3,
   h4,
@@ -106,6 +107,7 @@ const Center = styled.button`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
   transition: all 1s ease;
 
   & > :first-child {
@@ -159,6 +161,20 @@ const DarkDiv = styled.div`
 
 // const variants =
 
+const Button = styled.a`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0.5rem;
+  padding-bottom: 0.75rem;
+  color: inherit;
+  text-decoration: none;
+  border: 1px solid black;
+  text-align: center;
+  margin-top: 1rem;
+  border-radius: 15px;
+`;
+
 const Main = () => {
   const [click, setClick] = useState(false);
   const handleClick = () => setClick(!click);
@@ -202,7 +218,10 @@ const Main = () => {
             height={click ? 120 : 200}
             fill="currentColor"
           />
-          <span>Click Here</span>
+
+          <Button href="/okba-resume.pdf" download>
+            My Resume
+          </Button>
         </Center>
 
         <Contact

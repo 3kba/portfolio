@@ -1,87 +1,92 @@
-import { motion } from 'framer-motion'
-import React from 'react'
-import { Link, NavLink } from 'react-router-dom'
-import styled from 'styled-components'
-import { Facebook, Github, Twitter, Linkedin } from '../components/AllSvgs'
-import { DarkTheme } from '../components/Theme'
-
-
+import { motion } from "framer-motion";
+import React from "react";
+import { Link, NavLink } from "react-router-dom";
+import styled from "styled-components";
+import { Facebook, Github, Twitter, Linkedin } from "../components/AllSvgs";
+import { DarkTheme } from "../components/Theme";
 
 const Icons = styled.div`
-display: flex;
-flex-direction: column;
-align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-position: fixed;
-bottom: 0;
-left: 2rem;
-z-index: 3;
+  position: fixed;
+  bottom: 0;
+  left: 2rem;
+  z-index: 3;
 
-&>*:not(:last-child){
+  & > *:not(:last-child) {
     margin: 0.5rem 0;
-}
-`
+  }
+`;
 
 const Line = styled(motion.span)`
-width: 2px;
-height: 8rem;
-background-color: ${props => props.color === 'dark' ? DarkTheme.text : DarkTheme.body};
-
-`
+  width: 2px;
+  height: 8rem;
+  background-color: ${(props) =>
+    props.color === "dark" ? DarkTheme.text : DarkTheme.body};
+`;
 
 const SocialIcons = (props) => {
   return (
     <Icons>
-        <motion.div
-        initial={{transform:'scale(0)'}}
-        animate={{scale:[0.1,0.5,1.6,1.2]}}
-        transition={{type:'spring',duration: 1, delay: 1}}>
-            <a href='http://github.com/3kba' rel="noreferrer" target='_blank'>
-                <Github width={25} height={25} fill={props.theme === 'dark' ? DarkTheme.text : DarkTheme.body} />
-            </a>
-        </motion.div> 
-        <motion.div
-        initial={{transform:'scale(0)'}}
-        animate={{scale:[0.1,0.5,1.6,1.2]}}
-        transition={{type:'spring',duration: 1, delay: 1.2}}
+      <motion.div
+        initial={{ transform: "scale(0)" }}
+        animate={{ scale: [0.1, 0.5, 1.6, 1.2] }}
+        transition={{ type: "spring", duration: 1, delay: 1 }}
+      >
+        <a href="http://github.com/3kba" rel="noreferrer" target="_blank">
+          <Github
+            width={25}
+            height={25}
+            fill={props.theme === "dark" ? DarkTheme.text : DarkTheme.body}
+          />
+        </a>
+      </motion.div>
+      <motion.div
+        initial={{ transform: "scale(0)" }}
+        animate={{ scale: [0.1, 0.5, 1.6, 1.2] }}
+        transition={{ type: "spring", duration: 1, delay: 1.2 }}
+      >
+        <a
+          href="https://www.linkedin.com/in/okba-bouziane/"
+          rel="noreferrer"
+          target="_blank"
         >
-            <a  href='http://github.com/3kba' rel="noreferrer" target='_blank' >
-                <Linkedin width={25} height={25} fill={props.theme === 'dark' ? DarkTheme.text : DarkTheme.body} />
-            </a>
-        </motion.div>
-        <motion.div
-        initial={{transform:'scale(0)'}}
-        animate={{scale:[0.1,0.5,1.6,1.2]}}
-        transition={{type:'spring',duration: 1, delay: 1.4}}
-        >
-            <a  href='http://github.com/3kba' rel="noreferrer" target='_blank' >
-                <Twitter width={25} height={25} fill={props.theme === 'dark' ? DarkTheme.text : DarkTheme.body} />
-            </a>
-        </motion.div>
-        <motion.div
-        initial={{transform:'scale(0)'}}
-        animate={{scale:[0.1,0.5,1.6,1.2]}}
-        transition={{type:'spring',duration: 1, delay: 1.6}}
-        >
-            <a  href='http://github.com/3kba' rel="noreferrer" target='_blank' >
-                <Facebook width={25} height={25} fill={props.theme === 'dark' ? DarkTheme.text : DarkTheme.body} />
-            </a>
-        </motion.div>
-        <Line color={props.theme} 
+          <Linkedin
+            width={25}
+            height={25}
+            fill={props.theme === "dark" ? DarkTheme.text : DarkTheme.body}
+          />
+        </a>
+      </motion.div>
+      <motion.div
+        initial={{ transform: "scale(0)" }}
+        animate={{ scale: [0.1, 0.5, 1.6, 1.2] }}
+        transition={{ type: "spring", duration: 1, delay: 1.4 }}
+      ></motion.div>
+      <motion.div
+        initial={{ transform: "scale(0)" }}
+        animate={{ scale: [0.1, 0.5, 1.6, 1.2] }}
+        transition={{ type: "spring", duration: 1, delay: 1.6 }}
+      ></motion.div>
+      <Line
+        color={props.theme}
         initial={{
-            height:0,
-            transition : {type: 'spring', duration: 1.5, delay:1}
-          }}
-          animate={{
-            height:'8rem',
-            
-          }}
-          transition={{
-            type:'spring', duration:1, delay:0.8
-          }}
-        />
+          height: 0,
+          transition: { type: "spring", duration: 1.5, delay: 1 },
+        }}
+        animate={{
+          height: "8rem",
+        }}
+        transition={{
+          type: "spring",
+          duration: 1,
+          delay: 0.8,
+        }}
+      />
     </Icons>
-  )
-}
+  );
+};
 
-export default SocialIcons
+export default SocialIcons;
